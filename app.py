@@ -4,6 +4,7 @@ from openpyxl import load_workbook
 from tkinter import Tk, Button, Label, filedialog, messagebox
 from PIL import Image, ImageTk
 import tkinter as tk
+from tkinter import ttk
 
 import pandas as pd
 
@@ -103,7 +104,7 @@ def mostrar_tela_demanda():
     root_Demanda = Tk()
     root_Demanda.title("DEMANDA")
     root_Demanda.iconbitmap("icon.ico")
-    root_Demanda.geometry('1000x600')
+    root_Demanda.geometry('1200x600')
     root_Demanda.resizable(False, False)
     root_Demanda.configure(bg='#ccc')
 
@@ -111,10 +112,51 @@ def mostrar_tela_demanda():
     # => Produtos e verificar quais estão ativos
     # => e carregar seus respectivos fornecedores
 
-    
+    # -- Frame Topo
+    header = tk.Frame(root_Demanda, bg='#fff', relief='solid', width=1200, height=50)
+    header.propagate(False)
+    header.grid(row=0, column=0)
+
+    # -- ComboBox --
+    lbl_Fornecedor = Label(header, width=15, height=1, bg="#fff", text="FORNECEDORES", anchor="w", font=("Ivy", 10))
+    lbl_Fornecedor.place(x=10, y=2)
+
+    data = ["CSSR EDITORA SANTUARIO","DEVOTUM"]
+
+    CB_Fornecedores = ttk.Combobox(header, values = data, width = 40)
+    CB_Fornecedores.place(x= 10, y=28)
+
+    # Botão Consultar Fornecedor
+    img_lupa = redimensionar_imagem('lupa.png', 20, 20)
+
+    BTN_Consultar_Fornecedor = tk.Button(header, image= img_lupa, relief="solid", border=0, cursor='hand2', bg="#fff")
+    BTN_Consultar_Fornecedor.place(x=130, y=2)
+
+    # -- BTN FILTRAR ---
+    BTN_filtrar = tk.Button(header, text="FILTRAR", width=10, bg="#06074f", height=1, fg="#fff", cursor="hand2")
+    BTN_filtrar.place(x=300, y=25)
+
+    BTN_Buscar = tk.Button(header, text="BUSCAR", width=10, bg="#06074f", height=1, fg="#fff", cursor="hand2")
+    BTN_Buscar.place(x=390, y=25)
+
+    # Botão Infos
+    img_Info = redimensionar_imagem('informacoes.png', 50, 50)
+
+    BTN_Info = tk.Button(header, image= img_Info, relief="solid", border=0, cursor='hand2', bg="#fff")
+    BTN_Info.place(x=1120, y=0)
+
+    # -- ComboBox Operador--
+    lbl_Operador = Label(header, width=15, height=1, bg="#fff", text="RESPONSÁVEL", anchor="w", font=("Ivy", 10))
+    lbl_Operador.place(x=500, y=2)
+
+    data_op = ["OPERADOR_1","OPERADOR_2","OPERADOR_3","OPERADOR_4"]
+
+    CB_Operadores = ttk.Combobox(header, values = data_op, width = 20)
+    CB_Operadores.place(x=500, y=28)
 
 
 
+    # ---- TABELA PRODUTOS -----
 
 
     
